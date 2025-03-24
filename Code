@@ -1,0 +1,104 @@
+
+// Hàm tính độ dài xâu
+int strlen_custom(char *a) {
+    int len = 0;
+    while (*a++) len++;
+    return len;
+}
+
+// Hàm đảo ngược xâu
+void reverse(char *a) {
+    int len = strlen_custom(a);
+    char *start = a, *end = a + len - 1;
+    while (start < end) {
+        swap(*start, *end);
+        start++; end--;
+    }
+}
+
+// Hàm xóa kí tự c khỏi xâu a
+void delete_char(char *a, char c) {
+    char *src = a, *dst = a;
+    while (*src) {
+        if (*src != c) {
+            *dst = *src;
+            dst++;
+        }
+        src++;
+    }
+    *dst = '\0';
+}
+
+// Hàm độn phải xâu bằng space
+void pad_right(char *a, int n) {
+    int len = strlen_custom(a);
+    if (len >= n) return;
+    while (len < n) a[len++] = ' ';
+    a[len] = '\0';
+}
+
+// Hàm độn trái xâu bằng space
+void pad_left(char *a, int n) {
+    int len = strlen_custom(a);
+    if (len >= n) return;
+    int shift = n - len;
+    for (int i = len; i >= 0; i--) a[i + shift] = a[i];
+    for (int i = 0; i < shift; i++) a[i] = ' ';
+}
+
+// Hàm cắt xâu đến độ dài n
+void truncate(char *a, int n) {
+    if (strlen_custom(a) > n) a[n] = '\0';
+}
+
+// Hàm kiểm tra xâu đối xứng
+bool is_palindrome(char *a) {
+    int len = strlen_custom(a);
+    char *start = a, *end = a + len - 1;
+    while (start < end) {
+        if (*start != *end) return false;
+        start++; end--;
+    }
+    return true;
+}
+
+// Hàm lọc khoảng trắng ở đầu
+void trim_left(char *a) {
+    char *p = a;
+    while (*p == ' ') p++;
+    char *dst = a;
+    while (*p) *dst++ = *p++;
+    *dst = '\0';
+}
+
+// Hàm lọc khoảng trắng ở cuối
+void trim_right(char *a) {
+    int len = strlen_custom(a);
+    char *end = a + len - 1;
+    while (end >= a && *end == ' ') end--;
+    *(end + 1) = '\0';
+}
+
+int main() {
+    char str[100] = " hello world ";
+    
+    cout << "Original: '" << str << "'\n";
+    reverse(str);
+    cout << "Reversed: '" << str << "'\n";
+    reverse(str);
+    delete_char(str, 'o');
+    cout << "After delete 'o': '" << str << "'\n";
+    pad_right(str, 15);
+    cout << "After pad_right(15): '" << str << "'\n";
+    pad_left(str, 20);
+    cout << "After pad_left(20): '" << str << "'\n";
+    truncate(str, 10);
+    cout << "After truncate(10): '" << str << "'\n";
+    cout << "Is palindrome? " << (is_palindrome("madam") ? "Yes" : "No") << "\n";
+    trim_left(str);
+    cout << "After trim_left: '" << str << "'\n";
+    trim_right(str);
+    cout << "After trim_right: '" << str << "'\n";
+    
+    return 0;
+}
