@@ -1,0 +1,20 @@
+Phần B
+Câu 1 :
+*p3 = B, p3 = 0x5678
+*p3 = A, p3 = 0x1234
+*p1 = B, p1 = 0x1234
+  
+Câu 2:
+Chỉ có *p = 5; gán i = 5 thành công
+  
+Câu 3
+sai kiểu gán dữ liệu
+
+Phần D trắc nghiệm 
+1 : B
+2 : C 
+3 : C
+4 : B
+5 : D
+6 : A
+7 : C
